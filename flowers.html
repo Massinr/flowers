@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>For Alae ❤️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            overflow: hidden;
+            background: radial-gradient(ellipse at bottom, #1a0a0f 0%, #000000 100%);
+            font-family: 'Georgia', serif;
+            position: relative;
+        }
+
+        /* Animated background particles */
+        .particles {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: radial-gradient(circle, rgba(255, 182, 193, 0.8), transparent);
+            border-radius: 50%;
+            animation: float 15s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) translateX(0) scale(1);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(50px) scale(0.5);
+                opacity: 0;
+            }
+        }
+
+        .top-message {
+            position: fixed;
+            top: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            color: #ffc0cb;
+            font-size: 1.4rem;
+            text-align: center;
+            text-shadow: 0 0 15px rgba(255, 192, 203, 0.8),
+                         0 0 30px rgba(255, 192, 203, 0.5),
+                         0 2px 4px rgba(0, 0, 0, 0.8);
+            padding: 0 20px;
+            font-style: italic;
+            letter-spacing: 0.08em;
+            animation: gentleGlow 3s ease-in-out infinite;
+            max-width: 90%;
+        }
+
+        @keyframes gentleGlow {
+            0%, 100% {
+                text-shadow: 0 0 15px rgba(255, 192, 203, 0.8),
+                             0 0 30px rgba(255, 192, 203, 0.5),
+                             0 2px 4px rgba(0, 0, 0, 0.8);
+            }
+            50% {
+                text-shadow: 0 0 25px rgba(255, 192, 203, 1),
+                             0 0 40px rgba(255, 192, 203, 0.7),
+                             0 2px 4px rgba(0, 0, 0, 0.8);
+            }
+        }
+
+        .message-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(20, 10, 15, 0.97), rgba(0, 0, 0, 0.99));
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            animation: overlayFadeOut 1.5s ease-in-out 3.5s forwards;
+        }
+
+        .message {
+            font-size: 4.5rem;
+            font-weight: 300;
+            color: #ffb3c6;
+            text-shadow: 0 2px 20px rgba(255, 179, 198, 0.3),
+                         0 0 40px rgba(255, 150, 180, 0.2);
+            letter-spacing: 0.2em;
+            text-align: center;
+            padding: 0 30px;
+            line-height: 1.4;
+            opacity: 0;
+            animation: gentleFadeIn 1.5s ease-out 0.3s forwards,
+                       subtleFloat 4s ease-in-out 2s infinite;
+        }
+
+        .sub-message {
+            font-size: 2.2rem;
+            font-weight: 300;
+            color: #ffd4e3;
+            text-shadow: 0 2px 15px rgba(255, 212, 227, 0.3);
+            margin-top: 25px;
+            letter-spacing: 0.3em;
+            text-align: center;
+            opacity: 0;
+            animation: gentleFadeIn 1.5s ease-out 1s forwards,
+                       subtleGlow 3s ease-in-out 2.5s infinite;
+        }
+
+        @keyframes gentleFadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes subtleFloat {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        @keyframes subtleGlow {
+            0%, 100% {
+                text-shadow: 0 2px 15px rgba(255, 212, 227, 0.3);
+            }
+            50% {
+                text-shadow: 0 2px 20px rgba(255, 212, 227, 0.5),
+                             0 0 30px rgba(255, 180, 210, 0.3);
+            }
+        }
+
+        @keyframes overlayFadeOut {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+
+        .garden {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            touch-action: pan-y;
+        }
+
+        .flower {
+            position: absolute;
+            bottom: -250px;
+            animation: grow 3.5s ease-out forwards;
+            filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.6)) 
+                    drop-shadow(0 0 25px rgba(255, 100, 120, 0.3));
+        }
+
+        @keyframes grow {
+            to {
+                bottom: 0;
+            }
+        }
+
+        .rose {
+            width: 220px;
+        }
+
+        .lily {
+            width: 180px;
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: radial-gradient(circle, #fff, transparent);
+            border-radius: 50%;
+            animation: sparkleAnimation 3s ease-in-out infinite;
+            box-shadow: 0 0 15px #fff, 0 0 25px rgba(255, 192, 203, 0.8);
+        }
+
+        @keyframes sparkleAnimation {
+            0%, 100% {
+                opacity: 0;
+                transform: scale(0) rotate(0deg);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1) rotate(180deg);
+            }
+        }
+
+        /* Heart floating elements */
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            animation: floatHeart 10s infinite ease-in-out;
+            opacity: 0;
+        }
+
+        @keyframes floatHeart {
+            0% {
+                transform: translateY(0) rotate(0deg) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+                transform: scale(1);
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg) scale(0.3);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .message {
+                font-size: 2.8rem;
+                letter-spacing: 0.15em;
+                font-weight: 300;
+            }
+            .sub-message {
+                font-size: 1.8rem;
+                font-weight: 300;
+            }
+            .top-message {
+                font-size: 1.1rem;
+                top: 20px;
+            }
+            .rose {
+                width: 160px;
+            }
+            .lily {
+                width: 130px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .message {
+                font-size: 2rem;
+                line-height: 1.4;
+                letter-spacing: 0.12em;
+                font-weight: 300;
+            }
+            .sub-message {
+                font-size: 1.3rem;
+                margin-top: 15px;
+                font-weight: 300;
+            }
+            .top-message {
+                font-size: 0.95rem;
+                top: 15px;
+            }
+            .rose {
+                width: 130px;
+            }
+            .lily {
+                width: 105px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+    
+    <div class="top-message">I know roses and lilies are your favorites 💕</div>
+    
+    <div class="message-overlay">
+        <div class="message">I LOVE YOU<br>SO MUCH</div>
+        <div class="sub-message">ALAE ❤️</div>
+    </div>
+
+    <div class="garden" id="garden"></div>
+
+    <script>
+        const garden = document.getElementById('garden');
+        const particles = document.getElementById('particles');
+        const flowerCount = 35;
+
+        // Create floating particles
+        for (let i = 0; i < 60; i++) {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.bottom = '-10px';
+            particle.style.animationDelay = Math.random() * 15 + 's';
+            particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            particles.appendChild(particle);
+        }
+
+        // Create floating hearts
+        for (let i = 0; i < 20; i++) {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.bottom = '-20px';
+            heart.style.fontSize = (Math.random() * 15 + 10) + 'px';
+            heart.style.animationDelay = Math.random() * 10 + 's';
+            heart.style.animationDuration = (Math.random() * 8 + 8) + 's';
+            particles.appendChild(heart);
+        }
+
+        function createRose(x, delay) {
+            const rose = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            rose.setAttribute('viewBox', '0 0 150 260');
+            rose.classList.add('flower', 'rose');
+            rose.style.left = x + '%';
+            rose.style.animationDelay = delay + 's';
+            
+            const hue = Math.random() * 15 - 5; // Slight color variation
+            
+            rose.innerHTML = `
+                <defs>
+                    <radialGradient id="rose-outer-${delay}" cx="30%" cy="25%">
+                        <stop offset="0%" style="stop-color:#fff5f7;stop-opacity:1" />
+                        <stop offset="20%" style="stop-color:#ffccd5;stop-opacity:1" />
+                        <stop offset="50%" style="stop-color:#ff6b88;stop-opacity:1" />
+                        <stop offset="80%" style="stop-color:#e63946;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#c1121f;stop-opacity:1" />
+                    </radialGradient>
+                    
+                    <radialGradient id="rose-mid-${delay}" cx="35%" cy="30%">
+                        <stop offset="0%" style="stop-color:#ffe0e6;stop-opacity:1" />
+                        <stop offset="35%" style="stop-color:#ff9eb3;stop-opacity:1" />
+                        <stop offset="70%" style="stop-color:#e63946;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#a4161a;stop-opacity:1" />
+                    </radialGradient>
+                    
+                    <radialGradient id="rose-inner-${delay}" cx="40%" cy="35%">
+                        <stop offset="0%" style="stop-color:#ffb3c1;stop-opacity:1" />
+                        <stop offset="50%" style="stop-color:#d62828;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#8b0000;stop-opacity:1" />
+                    </radialGradient>
+                    
+                    <radialGradient id="rose-center-${delay}" cx="50%" cy="50%">
+                        <stop offset="0%" style="stop-color:#ba181b;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#5a0a0c;stop-opacity:1" />
+                    </radialGradient>
+                    
+                    <filter id="glow-${delay}">
+                        <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
+                        <feMerge>
+                            <feMergeNode in="coloredBlur"/>
+                            <feMergeNode in="SourceGraphic"/>
+                        </feMerge>
+                    </filter>
+                    
+                    <filter id="depth-${delay}">
+                        <feGaussianBlur in="SourceAlpha" stdDeviation="3"/>
+                        <feOffset dx="0" dy="4" result="offsetblur"/>
+                        <feComponentTransfer>
+                            <feFuncA type="linear" slope="0.7"/>
+                        </feComponentTransfer>
+                        <feMerge>
+                            <feMergeNode/>
+                            <feMergeNode in="SourceGraphic"/>
+                        </feMerge>
+                    </filter>
+                    
+                    <linearGradient id="stem-${delay}" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" style="stop-color:#1e4620;stop-opacity:1" />
+                        <stop offset="50%" style="stop-color:#2d5f30;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#1e4620;stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+                
+                <!-- Stem -->
+                <g>
+                    <path d="M 75 65 Q 73 140, 75 200 Q 76 230, 75 260" 
+                          stroke="url(#stem-${delay})" stroke-width="8" fill="none" 
+                          stroke-linecap="round"/>
+                    
+                    <!-- Thorns -->
+                    ${[95, 125, 160, 195, 230].map(y => 
+                        `<path d="M 73 ${y} L ${65 + Math.random() * 2} ${y - 5} L 72 ${y - 2} Z" 
+                               fill="#1a3d1c" opacity="0.85"/>
+                         <path d="M 77 ${y + 10} L ${85 - Math.random() * 2} ${y + 5} L 78 ${y + 8} Z" 
+                               fill="#1a3d1c" opacity="0.85"/>`
+                    ).join('')}
+                    
+                    <!-- Compound leaves -->
+                    <g transform="translate(45, 120) rotate(-50)" filter="url(#glow-${delay})">
+                        ${[-18, 0, 18].map((offset, i) => `
+                            <ellipse cx="${offset}" cy="${i === 1 ? -10 : -5}" 
+                                     rx="${i === 1 ? 15 : 13}" ry="${i === 1 ? 9 : 7}" 
+                                     fill="#2d5f30" opacity="0.95"
+                                     stroke="#1e4620" stroke-width="0.8"/>
+                        `).join('')}
+                        <line x1="0" y1="0" x2="-18" y2="-5" stroke="#1e4620" stroke-width="2"/>
+                        <line x1="0" y1="0" x2="0" y2="-10" stroke="#1e4620" stroke-width="2"/>
+                        <line x1="0" y1="0" x2="18" y2="-5" stroke="#1e4620" stroke-width="2"/>
+                    </g>
+                    
+                    <g transform="translate(105, 170) rotate(50)" filter="url(#glow-${delay})">
+                        ${[-18, 0, 18].map((offset, i) => `
+                            <ellipse cx="${offset}" cy="${i === 1 ? -10 : -5}" 
+                                     rx="${i === 1 ? 15 : 13}" ry="${i === 1 ? 9 : 7}" 
+                                     fill="#2d5f30" opacity="0.95"
+                                     stroke="#1e4620" stroke-width="0.8"/>
+                        `).join('')}
+                        <line x1="0" y1="0" x2="-18" y2="-5" stroke="#1e4620" stroke-width="2"/>
+                        <line x1="0" y1="0" x2="0" y2="-10" stroke="#1e4620" stroke-width="2"/>
+                        <line x1="0" y1="0" x2="18" y2="-5" stroke="#1e4620" stroke-width="2"/>
+                    </g>
+                </g>
+                
+                <!-- Rose bloom -->
+                <g filter="url(#depth-${delay})">
+                    <g style="animation: petalBloom 2.5s ease-out ${delay + 3}s forwards; transform-origin: 75px 60px; transform: scale(0);" filter="url(#glow-${delay})">
+                        
+                        <!-- Outer petals (6 large curved petals) -->
+                        ${[0, 60, 120, 180, 240, 300].map(angle => `
+                            <path d="M 75 60 Q ${30 + Math.random() * 5} ${25 + Math.random() * 5}, 
+                                     ${20 + Math.random() * 3} ${55 + Math.random() * 5} 
+                                     Q ${25 + Math.random() * 5} ${90 + Math.random() * 5}, 
+                                     ${70 + Math.random() * 3} ${80 + Math.random() * 3} 
+                                     Q 73 70, 75 60 Z" 
+                                  fill="url(#rose-outer-${delay})" 
+                                  stroke="#c1121f" stroke-width="0.5" 
+                                  opacity="0.96" 
+                                  transform="rotate(${angle} 75 60)"/>
+                        `).join('')}
+                        
+                        <!-- Middle layer (10 petals) -->
+                        ${Array.from({length: 10}, (_, i) => {
+                            const angle = i * 36;
+                            return `
+                                <path d="M 75 60 Q ${42 + Math.random() * 3} ${35 + Math.random() * 3}, 
+                                         ${38 + Math.random() * 2} ${55 + Math.random() * 3} 
+                                         Q ${43 + Math.random() * 3} ${75 + Math.random() * 3}, 
+                                         ${72 + Math.random() * 2} ${72 + Math.random() * 2} 
+                                         Q 74 66, 75 60 Z" 
+                                      fill="url(#rose-mid-${delay})" 
+                                      stroke="#a4161a" stroke-width="0.4" 
+                                      opacity="0.97" 
+                                      transform="rotate(${angle} 75 60)"/>
+                            `;
+                        }).join('')}
+                        
+                        <!-- Inner petals (15 petals) -->
+                        ${Array.from({length: 15}, (_, i) => {
+                            const angle = i * 24;
+                            return `
+                                <path d="M 75 60 Q ${55 + Math.random() * 2} ${45 + Math.random() * 2}, 
+                                         ${52 + Math.random() * 2} ${58 + Math.random() * 2} 
+                                         Q ${56 + Math.random() * 2} ${68 + Math.random() * 2}, 
+                                         ${74 + Math.random() * 1} ${66 + Math.random() * 1} Z" 
+                                      fill="url(#rose-inner-${delay})" 
+                                      stroke="#8b0000" stroke-width="0.3" 
+                                      opacity="0.98" 
+                                      transform="rotate(${angle} 75 60)"/>
+                            `;
+                        }).join('')}
+                        
+                        <!-- Center petals (8 tight) -->
+                        ${Array.from({length: 8}, (_, i) => {
+                            const angle = i * 45;
+                            return `
+                                <path d="M 75 60 Q 65 54, 63 60 Q 66 65, 75 64 Z" 
+                                      fill="url(#rose-center-${delay})" 
+                                      opacity="0.98" 
+                                      transform="rotate(${angle} 75 60)"/>
+                            `;
+                        }).join('')}
+                        
+                        <!-- Center -->
+                        <circle cx="75" cy="60" r="7" fill="#5a0a0c"/>
+                        <circle cx="75" cy="60" r="4" fill="#3a0507"/>
+                    </g>
+                </g>
+                
+                <style>
+                    @keyframes petalBloom {
+                        0% {
+                            transform: scale(0) rotate(-90deg);
+                            opacity: 0;
+                        }
+                        60% {
+                            transform: scale(1.1) rotate(5deg);
+                        }
+                        100% {
+                            transform: scale(1) rotate(0deg);
+                            opacity: 1;
+                        }
+                    }
+                </style>
+            `;
+            
+            return rose;
+        }
+
+        function createLily(x, delay) {
+            const lily = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            lily.setAttribute('viewBox', '0 0 130 240');
+            lily.classList.add('flower', 'lily');
+            lily.style.left = x + '%';
+            lily.style.animationDelay = delay + 's';
+            
+            lily.innerHTML = `
+                <defs>
+                    <radialGradient id="lily-${delay}" cx="35%" cy="30%">
+                        <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+                        <stop offset="25%" style="stop-color:#ffe6f0;stop-opacity:1" />
+                        <stop offset="60%" style="stop-color:#ffb3d9;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#ff6ba8;stop-opacity:1" />
+                    </radialGradient>
+                    
+                    <filter id="lily-glow-${delay}">
+                        <feGaussianBlur stdDeviation="1.2" result="coloredBlur"/>
+                        <feMerge>
+                            <feMergeNode in="coloredBlur"/>
+                            <feMergeNode in="SourceGraphic"/>
+                        </feMerge>
+                    </filter>
+                </defs>
+                
+                <g>
+                    <path d="M 65 70 Q 64 140, 65 190 Q 66 220, 65 240" 
+                          stroke="#2d5f30" stroke-width="7" fill="none" stroke-linecap="round"/>
+                    
+                    <g transform="translate(38, 130) rotate(-40)">
+                        <ellipse cx="0" cy="-8" rx="14" ry="8" fill="#2d5f30"/>
+                        <ellipse cx="-15" cy="-4" rx="12" ry="7" fill="#2d5f30" opacity="0.9"/>
+                        <ellipse cx="15" cy="-4" rx="12" ry="7" fill="#2d5f30" opacity="0.9"/>
+                    </g>
+                    
+                    <g transform="translate(92, 170) rotate(40)">
+                        <ellipse cx="0" cy="-8" rx="14" ry="8" fill="#2d5f30"/>
+                        <ellipse cx="-15" cy="-4" rx="12" ry="7" fill="#2d5f30" opacity="0.9"/>
+                        <ellipse cx="15" cy="-4" rx="12" ry="7" fill="#2d5f30" opacity="0.9"/>
+                    </g>
+                </g>
+                
+                <g filter="url(#lily-glow-${delay})" style="animation: petalBloom 3s ease-out ${delay + 3.5}s forwards; transform-origin: 65px 55px; transform: scale(0);">
+                    ${[0, 60, 120, 180, 240, 300].map(angle => `
+                        <ellipse cx="65" cy="55" rx="18" ry="42" 
+                                 fill="url(#lily-${delay})" 
+                                 stroke="#ff6ba8" stroke-width="0.5"
+                                 opacity="0.95" 
+                                 transform="rotate(${angle} 65 55)"/>
+                    `).join('')}
+                    
+                    <circle cx="65" cy="55" r="9" fill="#ffeb3b"/>
+                    <circle cx="65" cy="55" r="6" fill="#ffc107"/>
+                    
+                    ${[0, 72, 144, 216, 288].map(angle => `
+                        <line x1="65" y1="55" x2="65" y2="40" 
+                              stroke="#ff6f00" stroke-width="2" 
+                              transform="rotate(${angle} 65 55)"/>
+                        <circle cx="65" cy="38" r="2.5" fill="#ff6f00"
+                                transform="rotate(${angle} 65 55)"/>
+                    `).join('')}
+                </g>
+                
+                <style>
+                    @keyframes petalBloom {
+                        0% {
+                            transform: scale(0) rotate(-90deg);
+                            opacity: 0;
+                        }
+                        60% {
+                            transform: scale(1.1) rotate(5deg);
+                        }
+                        100% {
+                            transform: scale(1) rotate(0deg);
+                            opacity: 1;
+                        }
+                    }
+                </style>
+            `;
+            
+            return lily;
+        }
+
+        function createSparkles() {
+            for (let i = 0; i < 80; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.classList.add('sparkle');
+                sparkle.style.left = Math.random() * 100 + '%';
+                sparkle.style.top = Math.random() * 100 + '%';
+                sparkle.style.animationDelay = Math.random() * 3 + 's';
+                sparkle.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                garden.appendChild(sparkle);
+            }
+        }
+
+        // Create flowers after message fades
+        setTimeout(() => {
+            for (let i = 0; i < flowerCount; i++) {
+                const x = Math.random() * 95;
+                const delay = Math.random() * 3.5;
+                const isRose = Math.random() > 0.35; // More roses
+                
+                const flower = isRose ? createRose(x, delay) : createLily(x, delay);
+                garden.appendChild(flower);
+            }
+            createSparkles();
+        }, 4000);
+    </script>
+</body>
+</html>
